@@ -95,7 +95,7 @@
 <meta property="og:description" content="本文主要介绍Angular-Cli的相关配置和基础用法">
 <meta property="og:image" content="http://ofopl9abq.bkt.clouddn.com/angular2.png">
 <meta property="og:image" content="http://yoursite.com/plates/angular2_1_1.png">
-<meta property="og:updated_time" content="2017-03-29T05:58:53.629Z">
+<meta property="og:updated_time" content="2017-03-29T09:53:10.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular2（一）">
 <meta name="twitter:description" content="本文主要介绍Angular-Cli的相关配置和基础用法">
@@ -403,34 +403,36 @@
       
 
       
-        <p><style type="text/css"><br>    .no-border{<br>        text-align: center;<br>    }<br>    .no-border img{<br>        border:none !important;<br>        margin: 0 auto !important;<br>    }<br></style></p>
+        <style type="text/css">
+    .no-border{
+        text-align: center;
+    }
+    .no-border img{
+        border:none !important;
+        margin: 0 auto !important;
+    }
+</style>
+
 <div class="no-border"><br><img src="http://ofopl9abq.bkt.clouddn.com/angular2.png" alt="头图"><br></div>
 
-<blockquote>
-<p>###前言 </p>
-</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><hr>
 <p>本文所有内容均是参考大漠穷秋老师的<a href="http://www.bilibili.com/video/av8700148/?from=search&amp;seid=1544907794104278646" target="_blank" rel="external">Angular2.0视频教程</a>,你可以点击上方链接快速进入视频教程版，下面的内容纯粹只是个人记录，怕自己忘了。</p>
 <hr>
-<blockquote>
-<p>###一</p>
-</blockquote>
-<p>使用 <code>npm install -g angular-cli</code> 安装angular-cli<br><strong>PS:</strong> 这里大漠穷秋老师不推荐使用cnpm安装，因为会导致部分插件目录不一致</p>
+<h1 id="一"><a href="#一" class="headerlink" title="一"></a>一</h1><p>使用 <code>npm install -g angular-cli</code> 安装angular-cli<br><strong>PS:</strong> 这里大漠穷秋老师推荐使用cnpm安装</p>
 <p><a href="https://www.npmjs.com/package/angular-cli" target="_blank" rel="external">angular-cli</a>它集成了很多工具，比如：karma、webpack、typescript等等</p>
+<h1 id="二"><a href="#二" class="headerlink" title="二"></a>二</h1><p>1.使用 <code>ng new 项目名称</code> 初始化一个项目;<br>2.项目初始化完成后<strong>切换</strong>到<strong>项目文件目录</strong>;<br>3.在<strong>项目目录</strong>下使用 <code>npm isntall</code>（<code>cnpm</code>也行） 安装package.json文件中的依赖<br>4.等待安装完成</p>
+<h1 id="三"><a href="#三" class="headerlink" title="三"></a>三</h1><p>使用 <code>ng serve</code> 启动项目</p>
+<p><strong>PS:</strong> 使用 <code>npm serve --prod --aot</code> 可以简化项目（他会压缩代码并去除掉你没有使用到的module）</p>
+<h1 id="ng-generate"><a href="#ng-generate" class="headerlink" title="ng generate"></a>ng generate</h1><p><img src="/plates/angular2_1_1.png" alt="ss"></p>
+<p>上面的插图对应 <code>ng generate</code> 的命令，而且所有的命令均支持简写 <code>ng g</code></p>
+<p><strong>Example：</strong> </p>
 <blockquote>
-<p>###二</p>
+<p><code>c:component</code> 可以这样用 <code>ng generate component 名称</code> 也可以简写 <code>ng g c 名称</code></p>
 </blockquote>
-<p>1.使用 <code>ng new 项目名称</code> 初始化一个项目;<br>2.项目初始化完成后<strong>切换</strong>到<strong>项目文件目录</strong>;<br>3.在<strong>项目目录</strong>下使用 <code>npm isntall</code> 安装package.json文件中的依赖<br>4.等待安装完成</p>
-<blockquote>
-<p>###三</p>
-</blockquote>
-<p>使用 <code>ng serve</code> 启动项目</p>
-<p><strong>PS:</strong> 使用 npm serve –</p>
-<blockquote>
-<p>###ng generate</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">                    cl:class</div><div class="line">                    c:component</div><div class="line">                    d:directive</div><div class="line">ng generate --&gt;     e:enum</div><div class="line">                    m:module</div><div class="line">                    p:pipe</div><div class="line">                    s:service</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">graph LR</div><div class="line">    A[ng generate]---B(cl:class)</div><div class="line">    A---C(c:component)</div><div class="line">    A---D(d:directive)</div><div class="line">    A---E(e:enum)</div><div class="line">    A---F(m:module)</div><div class="line">    A---G(p:pipe)</div><div class="line">    A---H(s:service)</div></pre></td></tr></table></figure>
-<p><img src="/plates/angular2_1_1.png" alt="ss"></p>
+<h1 id="ng-build"><a href="#ng-build" class="headerlink" title="ng build"></a>ng build</h1><p>使用<code>ng build</code>或者<code>ng build --prod --aot</code>构建项目，他会在当前项目的根目录下面生成一个dist文件夹，里面有你想要的东西</p>
+<h1 id="ng-test"><a href="#ng-test" class="headerlink" title="ng test"></a>ng test</h1><p>使用<code>ng test</code>启动单元测试用例</p>
+<hr>
+<p>over</p>
 
       
     </div>
@@ -572,8 +574,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -651,6 +662,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一"><span class="nav-number">2.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二"><span class="nav-number">3.</span> <span class="nav-text">二</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三"><span class="nav-number">4.</span> <span class="nav-text">三</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ng-generate"><span class="nav-number">5.</span> <span class="nav-text">ng generate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ng-build"><span class="nav-number">6.</span> <span class="nav-text">ng build</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ng-test"><span class="nav-number">7.</span> <span class="nav-text">ng test</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
