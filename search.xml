@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[Angular2（一）]]></title>
       <url>%2F2017%2F03%2F29%2FAngular2-series-1%2F</url>
-      <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } ###前言 本文所有内容均是参考大漠穷秋老师的Angular2.0视频教程,你可以点击上方链接快速进入视频教程版，下面的内容纯粹只是个人记录，怕自己忘了。 ###一 使用 npm install -g angular-cli 安装angular-cliPS: 这里大漠穷秋老师不推荐使用cnpm安装，因为会导致部分插件目录不一致 angular-cli它集成了很多工具，比如：karma、webpack、typescript等等 ###二 1.使用 ng new 项目名称 初始化一个项目;2.项目初始化完成后切换到项目文件目录;3.在项目目录下使用 npm isntall 安装package.json文件中的依赖4.等待安装完成 ###三 使用 ng serve 启动项目 PS: 使用 npm serve – ###ng generate 1234567 cl:class c:component d:directiveng generate --&gt; e:enum m:module p:pipe s:service 12345678graph LR A[ng generate]---B(cl:class) A---C(c:component) A---D(d:directive) A---E(e:enum) A---F(m:module) A---G(p:pipe) A---H(s:service)]]></content>
+      <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } 前言 本文所有内容均是参考大漠穷秋老师的Angular2.0视频教程,你可以点击上方链接快速进入视频教程版，下面的内容纯粹只是个人记录，怕自己忘了。 一使用 npm install -g angular-cli 安装angular-cliPS: 这里大漠穷秋老师推荐使用cnpm安装 angular-cli它集成了很多工具，比如：karma、webpack、typescript等等 二1.使用 ng new 项目名称 初始化一个项目;2.项目初始化完成后切换到项目文件目录;3.在项目目录下使用 npm isntall（cnpm也行） 安装package.json文件中的依赖4.等待安装完成 三使用 ng serve 启动项目 PS: 使用 npm serve --prod --aot 可以简化项目（他会压缩代码并去除掉你没有使用到的module） ng generate 上面的插图对应 ng generate 的命令，而且所有的命令均支持简写 ng g Example： c:component 可以这样用 ng generate component 名称 也可以简写 ng g c 名称 ng build使用ng build或者ng build --prod --aot构建项目，他会在当前项目的根目录下面生成一个dist文件夹，里面有你想要的东西 ng test使用ng test启动单元测试用例 over]]></content>
     </entry>
 
     
