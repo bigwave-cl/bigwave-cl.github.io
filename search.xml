@@ -1,47 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
-  <entry>
-    <title><![CDATA[有感而发]]></title>
-    <url>%2F2017%2F06%2F23%2F%E6%9C%89%E6%84%9F%E8%80%8C%E5%8F%91%2F</url>
-    <content type="text"><![CDATA[现在的我还是不是那样“躲得过灯红酒绿的夜，躲不过四下无人的街”，人这一生最怕是听懂了某些歌词，这样会显得很恐慌。 每每静下心的时候总是在想，我现在究竟是一个怎样的人呢？仔细一想，以前的我又是怎样的好像太模糊了，已然毫无印象。但是我想说“程序猿，永不为奴！” 现在的我从身体上来说给我的感觉变化是最大的，22岁长了个大肚子，不以为耻反以为荣，天天浪的飞起，但是穿衣服的时候还是在烦恼身材变形了，一心想要减肥，却没有任何一次坚持下来了，前几天我给自己下了死命令，坚持2个月看下效果，没理由，必须要坚持，我希望两个月之后我还是2年前的身体匀称的样子。 其实，我TMD到底在说些什么啊！ 有些时候我很恨自己，为什么那么无能，说话不会说，做事情不会坚持，不懂怎么去维护人际关系（其实也没有什么所谓的人际关系给我维护），天天幻想着不可能的事情，不够理性的去对待消费问题，身材像黄瓜穿过西瓜之后的臃肿模样却还不去锻炼身体，没钱穷还天天幻想着美好的生活。为什么、为什么、为什么自己认识到这么多不好的地方，为什么不去改还要放纵其发展，我这样算不算人渣。我这样就是人渣。 曾经的承诺就当作儿戏一场吧！现在我应该改一改自己的某些地方，不让别人发现我是个人渣。啾~~~]]></content>
-      <categories>
-        <category>狂人日妓</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Angular2（一）]]></title>
-    <url>%2F2017%2F03%2F29%2FAngular2-series-1%2F</url>
-    <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } 前言 本文所有内容均是参考大漠穷秋老师的Angular2.0视频教程,你可以点击上方链接快速进入视频教程版，下面的内容纯粹只是个人记录，怕自己忘了。 一使用 npm install -g angular-cli 安装angular-cliPS: 这里大漠穷秋老师推荐使用cnpm安装 angular-cli它集成了很多工具，比如：karma、webpack、typescript等等 二1.使用 ng new 项目名称 初始化一个项目;2.项目初始化完成后切换到项目文件目录;3.在项目目录下使用 npm isntall（cnpm也行） 安装package.json文件中的依赖4.等待安装完成 三使用 ng server 启动项目 PS: 使用 ng server --prod --aot 可以简化项目（他会压缩代码并去除掉你没有使用到的module） ng generate 上面的插图对应 ng generate 的命令，而且所有的命令均支持简写 ng g Example： c:component 可以这样用 ng generate component 名称 也可以简写 ng g c 名称 ng build使用ng build或者ng build --prod --aot构建项目，他会在当前项目的根目录下面生成一个dist文件夹，里面有你想要的东西 ng test使用ng test启动单元测试用例 over]]></content>
-      <categories>
-        <category>关于Angular2</category>
-      </categories>
-      <tags>
-        <tag>Angular2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Date对象在各种浏览器的爱恨情仇]]></title>
-    <url>%2F2017%2F03%2F28%2Fdate%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } 前言 在前端开发中难免会和Date对象谈恋爱，可是彼此之间的接触又不够深入以至于都不了解对方就开始胡乱“插入”对方的生活。起初还好，随着时间的推移突然发现大家都有很想法不一样的地方，但是大家都以自己认为对方合适的方法处理问题，所以出现了一些列乌龙事件。 Date() 我们创建Date对象用来处理日期和时间，Date对象基于1970年1月1日起的毫秒数。它支持的初始化方式如下： new Date(); new Date(value); new Date(dateString); new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]); 当Date作为构造函数调用并传入多个参数时，如果数值大于合理范围时（如月份为13或者分钟数为70），相邻的数值会被调整。比如 new Date(2017, 13, 1)等于new Date(2018, 1, 1)，它们都表示日期2018-02-01（注意月份是从0开始的）。其他数值也是类似，new Date(2017, 2, 1, 0, 70)等于new Date(2017, 2, 1, 1, 10)，都表示时间2017-03-01T01:10:00。 浏览器表现 当传递的参数为dateString的时候在各个浏览解析的情况： var t = new Date(dateString); console.log(t); 各浏览表现的情况，请戳我 解决方法 相信到这里大家心里面都有自己的想法了 使用new Date(dateString);，请注意不要使用’yyy-m-d hh:mm:ss’这种格式，毕竟它不兼容所有浏览器。当然还要其他的情况，请参照上面的兼容表格； 使用new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);，它是兼容所有浏览器的 总结 要想过好每一天我们需要相互了解。 参考网址 MDN关于Date的详细介绍]]></content>
-      <categories>
-        <category>关于JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Markdown基础]]></title>
-    <url>%2F2017%2F03%2F27%2FMarkDown%E5%9F%BA%E7%A1%80%2F</url>
-    <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } 标题 #一级标题 ##二级标题 ###三级标题 以此类推，总共六级标题，建议在井号后加一个空格，这是最标准的 Markdown 语法 列表 熟悉 HTML 的同学肯定知道有序列表与无序列表的区别，在Markdown下，列表的显示只需要在文字前加上 - 或 * 即可变为无序列表，有序列表则直接在文字前加1. 2. 3.符号要和文字之间加上一个字符的空格。 一 二 三 一 二 三 引用 只需要在文本前加入 &gt; 这种尖括号（大于号）即可 &gt;引用的内容 图片与链接 插入链接与插入图片的语法很像，区别在一个 !号 图片为：![](){ImgCap}{/ImgCap} 链接为：[]() 插入图片的地址需要图床:google 粗体与斜体 Markdown 的粗体和斜体也非常简单，一段用两个 包含的文本就是的粗体语法，用一个 包含的文本就是斜体的语法。 example:粗体 斜体 代码块 要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：这是一个普通段落： 这是一个代码区块。 如果要标记一小段行内代码，你可以用反引号把它包起来（`），例如：print()]]></content>
-      <categories>
-        <category>关于MarkDown</category>
-      </categories>
-      <tags>
-        <tag>MarkDown</tag>
-      </tags>
-  </entry>
+  
+    <entry>
+      <title><![CDATA[原来多愁善感是病（谁知道呢）]]></title>
+      <url>%2F2017%2F06%2F24%2F%E5%8E%9F%E6%9D%A5%E5%A4%9A%E6%84%81%E5%96%84%E6%84%9F%E6%98%AF%E7%97%85%EF%BC%88%E8%B0%81%E7%9F%A5%E9%81%93%E5%91%A2%EF%BC%89%2F</url>
+      <content type="text"><![CDATA[2017-06-24 周六的天气还是挺好的呢凉凉的微风轻轻的吹在身体上面，别问我舒服是一种怎样的体验，早上小小的赖了下床起来之后利索的去楼下买了早餐和中午的菜，好久没这样有规律的周末生活了。 嗯，蒜苗炒五花肉味道比较重，不过还好啦，昨天喝了点小酒今天所以比较今天比较精神，嗯？什么鬼。 输入法不知道在抽什么风，在我高贵的sublime编辑器下面居然不按照套路显示正确的输入位置，我很烦，确实。 不过今天的天气确实不错的呢，今日的风确实有些诱人的美丽呢！ 所以我还是间接性的踌躇满志，持续性的混吃等死。 最后，我这里有句诗句，我看了很不爽 白发戴花君莫笑，岁月从不败美人]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[有感而发]]></title>
+      <url>%2F2017%2F06%2F23%2F%E6%9C%89%E6%84%9F%E8%80%8C%E5%8F%91%2F</url>
+      <content type="text"><![CDATA[现在的我还是不是那样“躲得过灯红酒绿的夜，躲不过四下无人的街”，人这一生最怕是听懂了某些歌词，这样会显得很恐慌。 每每静下心的时候总是在想，我现在究竟是一个怎样的人呢？仔细一想，以前的我又是怎样的好像太模糊了，已然毫无印象。但是我想说“程序猿，永不为奴！” 现在的我从身体上来说给我的感觉变化是最大的，22岁长了个大肚子，不以为耻反以为荣，天天浪的飞起，但是穿衣服的时候还是在烦恼身材变形了，一心想要减肥，却没有任何一次坚持下来了，前几天我给自己下了死命令，坚持2个月看下效果，没理由，必须要坚持，我希望两个月之后我还是2年前的身体匀称的样子。 其实，我TMD到底在说些什么啊！ 有些时候我很恨自己，为什么那么无能，说话不会说，做事情不会坚持，不懂怎么去维护人际关系（其实也没有什么所谓的人际关系给我维护），天天幻想着不可能的事情，不够理性的去对待消费问题，身材像黄瓜穿过西瓜之后的臃肿模样却还不去锻炼身体，没钱穷还天天幻想着美好的生活。为什么、为什么、为什么自己认识到这么多不好的地方，为什么不去改还要放纵其发展，我这样算不算人渣。我这样就是人渣。 曾经的承诺就当作儿戏一场吧！现在我应该改一改自己的某些地方，不让别人发现我是个人渣。啾~~~]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Angular2（一）]]></title>
+      <url>%2F2017%2F03%2F29%2FAngular2-series-1%2F</url>
+      <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } 前言 本文所有内容均是参考大漠穷秋老师的Angular2.0视频教程,你可以点击上方链接快速进入视频教程版，下面的内容纯粹只是个人记录，怕自己忘了。 一使用 npm install -g angular-cli 安装angular-cliPS: 这里大漠穷秋老师推荐使用cnpm安装 angular-cli它集成了很多工具，比如：karma、webpack、typescript等等 二1.使用 ng new 项目名称 初始化一个项目;2.项目初始化完成后切换到项目文件目录;3.在项目目录下使用 npm isntall（cnpm也行） 安装package.json文件中的依赖4.等待安装完成 三使用 ng server 启动项目 PS: 使用 ng server --prod --aot 可以简化项目（他会压缩代码并去除掉你没有使用到的module） ng generate 上面的插图对应 ng generate 的命令，而且所有的命令均支持简写 ng g Example： c:component 可以这样用 ng generate component 名称 也可以简写 ng g c 名称 ng build使用ng build或者ng build --prod --aot构建项目，他会在当前项目的根目录下面生成一个dist文件夹，里面有你想要的东西 ng test使用ng test启动单元测试用例 over]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Date对象在各种浏览器的爱恨情仇]]></title>
+      <url>%2F2017%2F03%2F28%2Fdate%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3%2F</url>
+      <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } 前言 在前端开发中难免会和Date对象谈恋爱，可是彼此之间的接触又不够深入以至于都不了解对方就开始胡乱“插入”对方的生活。起初还好，随着时间的推移突然发现大家都有很想法不一样的地方，但是大家都以自己认为对方合适的方法处理问题，所以出现了一些列乌龙事件。 Date() 我们创建Date对象用来处理日期和时间，Date对象基于1970年1月1日起的毫秒数。它支持的初始化方式如下： new Date(); new Date(value); new Date(dateString); new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]); 当Date作为构造函数调用并传入多个参数时，如果数值大于合理范围时（如月份为13或者分钟数为70），相邻的数值会被调整。比如 new Date(2017, 13, 1)等于new Date(2018, 1, 1)，它们都表示日期2018-02-01（注意月份是从0开始的）。其他数值也是类似，new Date(2017, 2, 1, 0, 70)等于new Date(2017, 2, 1, 1, 10)，都表示时间2017-03-01T01:10:00。 浏览器表现 当传递的参数为dateString的时候在各个浏览解析的情况： var t = new Date(dateString); console.log(t); 各浏览表现的情况，请戳我 解决方法 相信到这里大家心里面都有自己的想法了 使用new Date(dateString);，请注意不要使用’yyy-m-d hh:mm:ss’这种格式，毕竟它不兼容所有浏览器。当然还要其他的情况，请参照上面的兼容表格； 使用new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);，它是兼容所有浏览器的 总结 要想过好每一天我们需要相互了解。 参考网址 MDN关于Date的详细介绍]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Markdown基础]]></title>
+      <url>%2F2017%2F03%2F27%2FMarkDown%E5%9F%BA%E7%A1%80%2F</url>
+      <content type="text"><![CDATA[.no-border{ text-align: center; } .no-border img{ border:none !important; margin: 0 auto !important; } 标题 #一级标题 ##二级标题 ###三级标题 以此类推，总共六级标题，建议在井号后加一个空格，这是最标准的 Markdown 语法 列表 熟悉 HTML 的同学肯定知道有序列表与无序列表的区别，在Markdown下，列表的显示只需要在文字前加上 - 或 * 即可变为无序列表，有序列表则直接在文字前加1. 2. 3.符号要和文字之间加上一个字符的空格。 一 二 三 一 二 三 引用 只需要在文本前加入 &gt; 这种尖括号（大于号）即可 &gt;引用的内容 图片与链接 插入链接与插入图片的语法很像，区别在一个 !号 图片为：![](){ImgCap}{/ImgCap} 链接为：[]() 插入图片的地址需要图床:google 粗体与斜体 Markdown 的粗体和斜体也非常简单，一段用两个 包含的文本就是的粗体语法，用一个 包含的文本就是斜体的语法。 example:粗体 斜体 代码块 要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：这是一个普通段落： 这是一个代码区块。 如果要标记一小段行内代码，你可以用反引号把它包起来（`），例如：print()]]></content>
+    </entry>
+
+    
+  
+
 </search>
