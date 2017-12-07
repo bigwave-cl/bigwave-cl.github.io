@@ -44,30 +44,31 @@
     });
     jqxhr.done(function(r){
         console.log(r);
+        wx.config({
+            debug: false,
+            appId: r.appid,
+            timestamp: r.timestamp,
+            nonceStr: r.noncestr,
+            signature: r.signature,
+            jsApiList: [
+                'checkJsApi',
+                'translateVoice',
+                'startRecord',
+                'stopRecord',
+                'onVoiceRecordEnd',
+                'playVoice',
+                'onVoicePlayEnd',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'downloadVoice'
+            ]
+        });
     });
     jqxhr.fail(function(r){
         console.log(r);
     });
-    wx.config({
-        debug: false,
-        appId: 'wxf8b4f85f3a794e77',
-        timestamp: 1512613529,
-        nonceStr: 'BwPKOyKAyMnJZav3',
-        signature: '3267e1f980fedb4575af6e7500c841e0981eceae',
-        jsApiList: [
-            'checkJsApi',
-            'translateVoice',
-            'startRecord',
-            'stopRecord',
-            'onVoiceRecordEnd',
-            'playVoice',
-            'onVoicePlayEnd',
-            'pauseVoice',
-            'stopVoice',
-            'uploadVoice',
-            'downloadVoice'
-        ]
-    });
+    
     wx.ready(function() {
 
         // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
