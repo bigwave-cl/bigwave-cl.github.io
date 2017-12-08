@@ -2,7 +2,7 @@
  * @Author: askMeWhy
  * @Date:   2017-12-07 11:31:36
  * @Last Modified by:   bigWave
- * @Last Modified time: 2017-12-07 15:26:52
+ * @Last Modified time: 2017-12-07 15:53:43
  */
 console.log(location.href.split('#')[0]);
 var jqxhr = $.ajax({
@@ -11,26 +11,52 @@ var jqxhr = $.ajax({
 });
 jqxhr.done(function(r) {
 	wx.config({
-		debug: false,
-		appId: r.appid,
-		timestamp: r.timestamp,
-		nonceStr: r.noncestr,
-		signature: r.signature,
-		jsApiList: [
-			'checkJsApi',
-			'translateVoice',
-			'startRecord',
-			'stopRecord',
-			'onVoiceRecordEnd',
-			'playVoice',
-			'onVoicePlayEnd',
-			'pauseVoice',
-			'stopVoice',
-			'uploadVoice',
-			'downloadVoice'
-		]
+	    debug: false,
+	    appId: r.appid,
+	    timestamp:  r.timestamp,
+	    nonceStr: r.noncestr,
+	    signature: r.signature,
+	    jsApiList: [
+	      'checkJsApi',
+	      'onMenuShareTimeline',
+	      'onMenuShareAppMessage',
+	      'onMenuShareQQ',
+	      'onMenuShareWeibo',
+	      'onMenuShareQZone',
+	      'hideMenuItems',
+	      'showMenuItems',
+	      'hideAllNonBaseMenuItem',
+	      'showAllNonBaseMenuItem',
+	      'translateVoice',
+	      'startRecord',
+	      'stopRecord',
+	      'onVoiceRecordEnd',
+	      'playVoice',
+	      'onVoicePlayEnd',
+	      'pauseVoice',
+	      'stopVoice',
+	      'uploadVoice',
+	      'downloadVoice',
+	      'chooseImage',
+	      'previewImage',
+	      'uploadImage',
+	      'downloadImage',
+	      'getNetworkType',
+	      'openLocation',
+	      'getLocation',
+	      'hideOptionMenu',
+	      'showOptionMenu',
+	      'closeWindow',
+	      'scanQRCode',
+	      'chooseWXPay',
+	      'openProductSpecificView',
+	      'addCard',
+	      'chooseCard',
+	      'openCard'
+	    ]
 	});
 	wx.ready(function() {
+		alert('ready')
 		// 1 判断当前版本是否支持指定 JS 接口，支持批量判断
 		document.querySelector('#checkJsApi').onclick = function() {
 			wx.checkJsApi({
@@ -117,6 +143,10 @@ jqxhr.done(function(r) {
 		    }
 		  });
 		  alert('已注册获取“分享到 QQ”状态事件');
+		};
+		var voice = {
+		    localId: '',
+		    serverId: ''
 		};
 		// 4 音频接口
 		// 4.2 开始录音
@@ -212,7 +242,7 @@ jqxhr.done(function(r) {
 	});
 
 	wx.error(function(res) {
-		alert(JSON.stringify(res));
+		alert(JSON.stringify(res.errMsg));
 	});
 });
 jqxhr.fail(function(r) {
