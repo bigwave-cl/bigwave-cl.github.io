@@ -2,7 +2,7 @@
  * @Author: askMeWhy
  * @Date:   2017-12-07 11:31:36
  * @Last Modified by:   bigWave
- * @Last Modified time: 2017-12-14 11:08:21
+ * @Last Modified time: 2017-12-14 14:38:19
  */
 console.log(location.href.split('#')[0]);
 var jqxhr = $.ajax({
