@@ -2,11 +2,11 @@
  * @Author: askMeWhy
  * @Date:   2017-12-07 11:31:36
  * @Last Modified by:   bigWave
- * @Last Modified time: 2017-12-07 15:53:43
+ * @Last Modified time: 2017-12-14 11:08:21
  */
 console.log(location.href.split('#')[0]);
 var jqxhr = $.ajax({
-	url: 'http://192.168.1.102:3033/api/getWechat',
+	url: 'http://192.168.1.100:3033/api/getWechat',
 	type: "GET"
 });
 jqxhr.done(function(r) {
