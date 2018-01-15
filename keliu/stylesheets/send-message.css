@@ -2,7 +2,7 @@
 * @Author: askMeWhy
 * @Date:   2018-01-12 17:30:51
 * @Last Modified by:   bigWave
-* @Last Modified time: 2018-01-15 14:53:16
+* @Last Modified time: 2018-01-15 15:21:33
 */
 
 .passenger-flow-header {
@@ -242,6 +242,7 @@
 }
 
 .set-message-box {
+	-webkit-overflow-scrolling: touch;
 	overflow-y: auto;
 	width: 100%;
 	padding-bottom: 17.2%;

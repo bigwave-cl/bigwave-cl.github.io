@@ -110,7 +110,7 @@
 		},
 		computed: {
 			setBoxStyle: function() {
-				var _height = $('.notice-bar').outerHeight() + $('.edit-box').outerHeight();
+				var _height = (this.notice ? $('.notice-bar').outerHeight() : 0) + $('.edit-box').outerHeight();
 				_height = $('.wrapper').height() - _height;
 				return { height: _height + 'px' };
 			}
