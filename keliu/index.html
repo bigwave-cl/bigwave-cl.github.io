@@ -31,6 +31,7 @@
 	<meta name="author" content="陈龙">
 	<meta name="robots" content="index,follow">
 	<link rel="stylesheet" type="text/css" href="./stylesheets/base.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/ask-modal.css">
 	<link rel="stylesheet" type="text/css" href="./stylesheets/index.css">
 </head>
 
@@ -147,14 +148,19 @@
 	<script type="text/javascript" src="./javascripts/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script type="text/javascript" src="./javascripts/echarts.min.js"></script>
+	<script type="text/javascript" src="./javascripts/utils.js"></script>
 	<script>
+	var ACCESS_TOKEN = "b5badcc2b8dd67cdd132b2f55086184a",
+		W_ID = 164,
+		SIGN = "",
+		BASE_URL = "http://testmob.to-ok.com.cn/page/web-app/api";
 	var app = new Vue({
 		el: '#app',
 		data: {
 			loader: false,
 			type: 1,
 			analysis: 0,
-			analysisNum: 50,
+			analysisNum: 0,
 			guest: {
 				new: 0,
 				old: 0
@@ -186,9 +192,14 @@
 			}
 		},
 		mounted: function() {
+
+			//客流量图表
 			this.customerFlowEchart();
+			//新老客户数量图表
 			this.customerNumberEchart();
+			//品牌统计图表
 			this.brandCountEchart();
+
 			this.initData();
 		},
 		methods: {
@@ -215,15 +226,19 @@
 				this.loader = true;
 				$.ajax({
 					url: url,
-					type: "GET", // 默认为GET,你可以根据需要更改
+					type: "POST",
 					data: {
-						type: this.type
-					}, // 将请求参数放这里.
+						"method": "user_probe",
+						"type": this.type,
+						"access_token": ACCESS_TOKEN,
+						"wid": W_ID,
+						"sign": SIGN
+					},
 					dataType: "json",
 				}).then(function(r) {
 					this.loader = false;
 					if (!r || !r.ok) {
-						alert('网络请求错误');
+						askToast.spread("网络请求错误");
 						return;
 					}
 					this.analysis = this.amountFormat(r.data.total);
@@ -238,8 +253,8 @@
 					this.brandCountInstance.refreshEchart();
 				}.bind(this), function(error) {
 					this.loader = false;
-					alert('网络请求错误');
-				});
+					askToast.spread("网络请求错误");
+				}.bind(this));
 			},
 			startRadar: function() {
 				this.radarPeople = 0;
@@ -519,6 +534,7 @@
 					},
 					series: [{
 						type: 'pie',
+						silent : true,
 						radius: radius,
 						startAngle: 90,
 						data: data,

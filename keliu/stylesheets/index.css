@@ -1,8 +1,8 @@
 /*
 * @Author: askMeWhy
 * @Date:   2018-01-12 17:30:51
-* @Last Modified by:   smile
-* @Last Modified time: 2018-01-12 17:32:26
+* @Last Modified by:   bigWave
+* @Last Modified time: 2018-01-15 11:37:01
 */
 
 .passenger-flow-header {
@@ -489,7 +489,36 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	border: 2px solid #ff7b7b;
+}
+
+.ask-loader-body .circle::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 50%;
+	height: 100%;
+	content: '';
+	-webkit-transform: rotate(-15deg);
+	transform: rotate(-15deg);
+	border: 4px solid #3c78e3;
+	border-right: none;
+	border-radius: 100% 0 0 100%/50% 0 0 50%;
+}
+
+.ask-loader-body .circle::before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 50%;
+	height: 100%;
+	content: '';
+	-webkit-transform: rotate(15deg);
+	transform: rotate(15deg);
+	border: 4px solid #3c78e3;
+	border-left: none;
+	border-radius: 0 100% 100% 0/0 50% 50% 0;
 }
 
 .ask-loader-body .circle.large {
@@ -498,9 +527,21 @@
 	width: 80%;
 	height: 80%;
 	animation: radar-part-rotate 2s ease-in-out infinite alternate-reverse;
-	border: 4px solid #ff7b7b;
-	border-bottom: none;
-	border-radius: 100% 100% 0 0;
+	/* border: 4px solid #ff7b7b; */
+}
+
+.ask-loader-body .circle.large::after {
+	top: -7%;
+	-webkit-transform: rotate(15deg);
+	transform: rotate(15deg);
+	border-color: #ff7b7b;
+}
+
+.ask-loader-body .circle.large::before {
+	top: -7%;
+	-webkit-transform: rotate(-15deg);
+	transform: rotate(-15deg);
+	border-color: #ff7b7b;
 }
 
 .ask-loader-body .circle.small {
@@ -510,7 +551,4 @@
 	height: 30%;
 	-webkit-animation: radar-part-rotate 3s ease-out infinite alternate;
 	animation: radar-part-rotate 3s ease-out infinite alternate;
-	border: 4px solid #3c78e3;
-	border-top: none;
-	border-radius: 0 0 100% 100%;
 }

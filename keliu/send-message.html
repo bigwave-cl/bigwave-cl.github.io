@@ -31,6 +31,7 @@
 	<meta name="author" content="陈龙">
 	<meta name="robots" content="index,follow">
 	<link rel="stylesheet" type="text/css" href="./stylesheets/base.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/ask-modal.css">
 	<link rel="stylesheet" type="text/css" href="./stylesheets/send-message.css">
 </head>
 
@@ -61,13 +62,25 @@
 									</label>
 								</div>
 							</div>
-							<div class="sm-obody" v-text="i.content"></div>
+							<template v-if="i.type == 0">
+								<div class="sm-obody" v-text="i.content"></div>
+							</template>
+							<template v-else>
+								<div class="sm-obody">
+									<div class="sm-obcaption">
+										<div class="img">
+											<img :src="i.picture || ''" alt="封面">
+										</div>
+									</div>
+									<div class="sm-obdes" v-html="i.content"></div>
+								</div>
+							</template>
 						</div>
 					</div>
 				</template>
 			</div>
 			<div class="send-message">
-				<button type="button">发送</button>
+				<button type="button" @click="sendMessage">发送</button>
 			</div>
 			<div class="ask-loader" v-show="loader">
 				<div class="ask-loader-overlay"></div>
@@ -80,8 +93,12 @@
 	</div>
 	<script type="text/javascript" src="./javascripts/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script type="text/javascript" src="./javascripts/echarts.min.js"></script>
+	<script type="text/javascript" src="./javascripts/utils.js"></script>
 	<script>
+	var ACCESS_TOKEN = "b5badcc2b8dd67cdd132b2f55086184a",
+		W_ID = 164,
+		SIGN = "",
+		BASE_URL = "http://testmob.to-ok.com.cn/page/web-app/api";
 	var app = new Vue({
 		el: '#app',
 		data: {
@@ -106,23 +123,31 @@
 				this.loader = true;
 				$.ajax({
 					url: './javascripts/message.json',
-					type: "GET", // 默认为GET,你可以根据需要更改
-					data: {}, // 将请求参数放这里.
+					type: "POST",
+					data: {
+						"method": "center_getMessage",
+						"access_token": ACCESS_TOKEN,
+						"sign": SIGN
+					},
 					dataType: "json",
 				}).then(function(r) {
 					this.loader = false;
 					if (!r || !r.ok) {
-						alert('网络请求错误');
+						askToast.spread("网络请求错误");
 						return;
 					}
 					this.setArr = [];
+					if(r.message.length == 0) {
+						askToast.spread("暂无自定义内容");
+						return;
+					}
 					r.message.forEach(function(item) {
 						this.setArr.push(item);
 					}.bind(this));
 				}.bind(this), function(error) {
 					this.loader = false;
-					alert('网络请求错误');
-				});
+					askToast.spread("网络请求错误");
+				}.bind(this));
 			},
 			closeNotice: function() {
 				this.notice = false;
@@ -133,6 +158,19 @@
 				} else {
 					this.checked = value;
 				}
+			},
+			sendMessage: function() {
+				if (!this.message && this.checked == -1) {
+					askToast.spread("请输入您想说的内容或选择一项预设内容");
+					return;
+				}
+				var id = this.checked == -1 ? "" : this.setArr[this.checked].id;
+				if (id == void 0) return;
+				this.loader = true;
+				setTimeout(function() {
+					this.loader = false;
+					askToast.spread("发送成功");
+				}.bind(this), 2000);
 			}
 		},
 		watch: {
