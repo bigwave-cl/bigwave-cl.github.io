@@ -1,0 +1,304 @@
+/*
+* @Author: askMeWhy
+* @Date:   2018-02-28 14:59:56
+* @Last Modified by:   smile
+* @Last Modified time: 2018-02-28 16:00:29
+*/
+
+#app {
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+}
+
+#app::-webkit-scrollbar {
+	display: none;
+}
+
+.lianmen-nav {
+	width: 100%;
+	height: .48rem;
+	border-bottom: .01rem solid #e7e7e7;
+	background: #fff;
+}
+
+.lianmen-nav .ask-sn-list {
+	height: .47rem;
+}
+
+.lianmen-body {
+	position: relative;
+	width: 100%;
+	height: calc(100% - .48rem);
+}
+
+.lianmen-category {
+	width: 100%;
+}
+
+.lianmen-category-list {
+	font-size: 0;
+	width: 100%;
+	white-space: normal;
+	word-break: break-all;
+	background: #fff;
+}
+
+.lianmen-cl-item {
+	display: inline-block;
+	width: 20%;
+	padding: .1rem 0 0;
+}
+
+.lianmen-cl-item .cover {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	height: .42rem;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.lianmen-cl-item .cover>img {
+	max-width: 100%;
+	height: 100%;
+}
+
+.lianmen-cl-item .cover.all>img {
+	height: .22rem;
+}
+
+.lianmen-cl-item .text {
+	font-size: .12rem;
+	line-height: 1;
+	overflow: hidden;
+	padding: .08rem 0 .14rem;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.lianmen-goods {
+	width: 100%;
+	padding-top: .1rem;
+}
+
+.lianmen-goods-list {
+	font-size: 0;
+	width: 100%;
+	white-space: normal;
+	word-break: break-all;
+}
+
+.lianmen-goods-item {
+	display: inline-block;
+	width: 50%;
+	padding: 0 .02rem .04rem;
+}
+
+.lianmen-goods-item:nth-child(2n+1) {
+	padding: 0 .02rem .04rem 0;
+}
+
+.lianmen-goods-item:nth-child(2n+2) {
+	padding: 0 0 .04rem .02rem;
+}
+
+.lianmen-goods-item .detail {
+	width: 100%;
+	background: #fff;
+}
+
+.lianmen-goods-item .cover {
+	position: relative;
+	width: 100%;
+	padding: 64.96% 0;
+}
+
+.lianmen-goods-item .cover>img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.lianmen-goods-item .info {
+	width: 100%;
+	padding: .12rem .08rem;
+}
+
+.lianmen-goods-item .line-text {
+	font-size: .16rem;
+	line-height: 1.4;
+	overflow: hidden;
+	width: 100%;
+	height: .22rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #000;
+}
+
+.lianmen-goods-item .line-price {
+	font-size: 0;
+	overflow: hidden;
+	width: 100%;
+	height: .28rem;
+	white-space: nowrap;
+}
+
+.lianmen-goods-item .line-price span {
+	font-size: .12rem;
+	display: inline-block;
+	color: #333;
+}
+
+.lianmen-goods-item .line-price span.m {
+	text-decoration: line-through;
+	color: #666;
+}
+
+.lianmen-goods-item .line-price span.p {
+	color: #f02b2d;
+}
+
+.lianmen-goods-item .line-price span.p i {
+	font-size: .2rem;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.lianmen-goods-item .line-tag {
+	font-size: 0;
+	overflow: hidden;
+	width: 100%;
+	height: .22rem;
+	padding-top: .04rem;
+	white-space: nowrap;
+}
+
+.lianmen-goods-item .line-tag span {
+	font-size: .12rem;
+	display: inline-block;
+	margin-right: .04rem;
+	padding: 0 .03rem;
+	color: #f02b2d;
+	border: 1px solid #f02b2d;
+	border-radius: 4px;
+}
+
+.lianmen-goods-item .line-tag span:nth-child(3n+1) {
+	color: #fff;
+	border: 1px solid #f02b2d;
+	background: #f02b2d;
+}
+
+.lianmen-goods-item .line-tag span:nth-child(3n+2) {
+	color: #f02b2d;
+	border: 1px solid #f02b2d;
+	background: #fff;
+}
+
+.lianmen-goods-item .line-tag span:nth-child(3n+3) {
+	color: #41af7e;
+	border: 1px solid #41af7e;
+	background: #fff;
+}
+
+.back-top-btn {
+	position: fixed;
+	z-index: 100;
+	right: .18rem;
+	bottom: .64rem;
+	width: .42rem;
+	height: .42rem;
+	cursor: pointer;
+	border: .01rem solid #d1d1d1;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, .6);
+}
+
+.back-top-btn .icon {
+	width: 40%;
+	margin: 0 auto;
+	padding: .04rem 0 0;
+	pointer-events: none;
+}
+
+.back-top-btn .text {
+	font-size: .12rem;
+	line-height: .12rem;
+	position: absolute;
+	bottom: .07rem;
+	display: block;
+	width: 100%;
+	height: .12rem;
+	text-align: center;
+	pointer-events: none;
+	color: #333;
+}
+
+
+/* 进入过渡的开始状态 */
+
+.toggle-back-btn-enter {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+	opacity: 0;
+}
+
+
+/* 过渡的状态 */
+
+.toggle-back-btn-enter-active {
+	-webkit-transition: opacity .3s linear, -webkit-transform .3s ease-in;
+	transition: opacity .3s linear, -webkit-transform .3s ease-in;
+	transition: transform .3s ease-in, opacity .3s linear;
+	transition: transform .3s ease-in, opacity .3s linear, -webkit-transform .3s ease-in;
+	will-change: transform;
+}
+
+
+/* 进入过渡的结束状态 */
+
+.toggle-back-btn-enter-to {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	opacity: 1;
+}
+
+
+/* 离开过渡的开始状态 */
+
+.toggle-back-btn-leave {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	opacity: 1;
+}
+
+
+/* 过渡的状态 */
+
+.toggle-back-btn-leave-active {
+	-webkit-transition: opacity .3s linear, -webkit-transform .3s ease-out;
+	transition: opacity .3s linear, -webkit-transform .3s ease-out;
+	transition: transform .3s ease-out, opacity .3s linear;
+	transition: transform .3s ease-out, opacity .3s linear, -webkit-transform .3s ease-out;
+	will-change: transform;
+}
+
+
+/* 离开过渡的结束状态 */
+
+.toggle-back-btn-leave-to {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+	opacity: 0;
+}

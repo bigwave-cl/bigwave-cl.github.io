@@ -1,0 +1,205 @@
+/*
+* @Author: askMeWhy
+* @Date:   2018-02-26 15:36:26
+* @Last Modified by:   bigWave
+* @Last Modified time: 2018-02-27 18:24:30
+*/
+
+
+/* 滑动导航slide-nav层叠样式表 */
+
+.ask-slide-nav {
+	overflow: auto;
+	width: 100%;
+	background: #fff;
+	text-align: center;
+}
+
+.ask-slide-nav::-webkit-scrollbar {
+	display: none;
+}
+
+.ask-sn-list {
+	position: relative;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	overflow: hidden;
+	height: .4rem;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: stretch;
+	    -ms-flex-align: stretch;
+	        align-items: stretch;
+}
+
+.ask-sn-item {
+	font-size: .14rem;
+	line-height: 1;
+	padding: 0 .1rem;
+	white-space: nowrap;
+	color: #333;
+}
+
+.ask-sn-item>span {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: 100%;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.ask-sn-item.active {
+	color: #e02e24;
+}
+
+.ask-sn-ink-bar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	text-align: center;
+	background-color: #e02e24;
+}
+
+.ask-sn-ink-bar.ink-bar-transition-forward {
+	-webkit-transition: right .3s cubic-bezier(.35, 0, .25, 1), left .3s cubic-bezier(.35, 0, .25, 1) .09s;
+	transition: right .3s cubic-bezier(.35, 0, .25, 1), left .3s cubic-bezier(.35, 0, .25, 1) .09s;
+}
+
+.ask-sn-ink-bar.ink-bar-transition-backward {
+	-webkit-transition: right .3s cubic-bezier(.35, 0, .25, 1) .09s, left .3s cubic-bezier(.35, 0, .25, 1);
+	transition: right .3s cubic-bezier(.35, 0, .25, 1) .09s, left .3s cubic-bezier(.35, 0, .25, 1);
+}
+
+
+/* ask-scroll组件层叠样式表  */
+
+.ask-scroll {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	will-change: scroll-position;
+}
+
+.ask-scroll::-webkit-scrollbar {
+	display: none;
+}
+
+.ask-scroll .ask-scroll-body {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	-webkit-transition: -webkit-transform 0s;
+	transition: -webkit-transform 0s;
+	transition: transform 0s;
+	transition: transform 0s, -webkit-transform 0s;
+}
+
+.ask-scroll .ask-scroll-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	height: 40px;
+	-webkit-transform: translate3d(0, -100%, 0);
+	transform: translate3d(0, -100%, 0);
+	color: #aaa;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.ask-scroll .ask-scroll-footer {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: 40px;
+	color: #aaa;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.ask-scroll .ask-scroll-bar .as-barx {
+	position: absolute;
+	z-index: 20;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	pointer-events: none;
+	background: transparent;
+	overflow: hidden;
+}
+
+.ask-scroll .ask-scroll-bar .as-barx .as-bartrack {
+	position: absolute;
+	z-index: 2;
+	top: 25%;
+	left: 0;
+	width: 0;
+	height: 50%;
+	border-radius: 4px/50%;
+	background: #c3c2c3;
+}
+
+.ask-scroll .ask-scroll-bar .as-bary {
+	position: absolute;
+	z-index: 20;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 4px;
+	height: 100%;
+	pointer-events: none;
+	background: transparent;
+	overflow: hidden;
+}
+
+.ask-scroll .ask-scroll-bar .as-bary .as-bartrack {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 25%;
+	width: 50%;
+	height: 0;
+	border-radius: 50%/4px;
+	background: #c3c2c3;
+}
+
+.scroll-before, .scroll-loosen, .scroll-in, .scroll-end {
+	display: none;
+	text-align: center;
+}
+
+.ask-scroll.touching {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.ask-scroll.refresh-before .ask-scroll-header .scroll-before, 
+.ask-scroll.refresh-loosen .ask-scroll-header .scroll-loosen, 
+.ask-scroll.refresh-in .ask-scroll-header .scroll-in, 
+.ask-scroll.refresh-end .ask-scroll-header .scroll-end, 
+.ask-scroll.infinite-before .ask-scroll-footer .scroll-before, 
+.ask-scroll.infinite-in .ask-scroll-footer .scroll-in, 
+.ask-scroll.infinite-end .ask-scroll-footer .scroll-end {
+	display: block;
+}

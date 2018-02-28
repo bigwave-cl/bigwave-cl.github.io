@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>仿拼多多之首页</title>
+	<meta name="description" content="仿拼多多之首页">
+	<meta name="author" content="陈龙">
+	<meta name="robots" content="index,follow">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/base.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/ask-modal.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/components.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/index.css">
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<div id="app">
+			<div class="lianmen-nav">
+				<slide-nav :default-active="defaultActive" :list="slideData" @item-click="itemClick"></slide-nav>
+			</div>
+			<div class="lianmen-body">
+				<scroll-body :on-infinite="onInfinite" ref="scrollRef" @on-scroll="onScroll">
+					<div class="lianmen-category">
+						<ul class="lianmen-category-list">
+							<template v-for="(citem,$ci) in categorys">
+								<li class="lianmen-cl-item" v-if="$ci <= 8">
+									<div class="cover">
+										<img :src="citem.cover" alt="图片">
+									</div>
+									<div class="text">{{citem.name}}</div>
+								</li>
+							</template>
+							<li class="lianmen-cl-item" v-if="categorys.length > 9">
+								<div class="cover all">
+									<img src="./images/icon_all.png" alt="图片">
+								</div>
+								<div class="text">查看全部</div>
+							</li>
+						</ul>
+					</div>
+					<div class="lianmen-goods">
+						<div class="lianmen-goods-list">
+							<template v-for="(product,$pi) in goodsList">
+								<div class="lianmen-goods-item">
+									<div class="detail">
+										<div class="cover">
+											<img :src="product.cover" alt="封面">
+										</div>
+										<div class="info">
+											<div class="line-text">{{product.name}}</div>
+											<div class="line-price">
+												<span class="p">
+													￥
+													<i>{{twoFloat(product.price).split('\.')[0]}}</i>.{{twoFloat(product.price).split('\.')[1]}}
+												</span>
+												<span class="m">
+													￥{{twoFloat(product.market_price)}}
+												</span>
+											</div>
+											<div class="line-tag">
+												<template v-for="tag in product.tags">
+													<span>{{tag.name}}</span>
+												</template>
+											</div>
+										</div>
+									</div>
+								</div>
+							</template>
+						</div>
+					</div>
+					<template v-if="!infiniteMore" slot="infinite">
+						<div class="bottom-line-text">
+							<span>
+								<template v-if="goodsList.length == 0 ">暂无数据</template>
+								<template v-else>已加载全部数据</template>
+							</span>
+						</div>
+					</template>
+				</scroll-body>
+			</div>
+			<transition name="toggle-back-btn">
+				<div class="back-top-btn" v-show="backTopBtn" @click="backToTop">
+					<div class="icon">
+						<svg viewBox="0 0 40 20">
+							<path d="M0 20 L20 0 L40 20" stroke-width="2" stroke="#333" stroke-linejoin="round" fill="none"/>
+						</svg>
+					</div>
+					<div class="text">顶部</div>
+				</div>
+			</transition>
+		</div>
+	</div>
+	<footer>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</footer>
+</body>
+<script src="./javascripts/jquery-3.2.1.min.js"></script>
+<script src="./javascripts/utils.js"></script>
+<script src="./javascripts/vue.min.js"></script>
+<script src="./javascripts/components/component.slide-nav.js"></script>
+<script src="./javascripts/components/component.scroll-body.js"></script>
+<script type="text/javascript">
+var app = new Vue({
+	el: '#app',
+	components: {
+		'slide-nav': slideNav,
+		'scroll-body': scrollBody
+	},
+	data: {
+		defaultActive: 0,
+		slideData: [],
+		categorys: [],
+		offset: 0, //分页数据第一页,
+		infiniteMore: true,//是否还有更多分页数据
+		goodsList: [],
+		backTopBtn: false
+	},
+	computed: {
+		twoFloat() {
+			return twoFloat;
+		}
+	},
+	mounted: function() {
+		this.initMenu();
+	},
+	methods: {
+		initMenu() {
+			askLoader(true);
+			var jqxhr = $.ajax({
+				url: './test.json',
+				method: "GET", // 默认为GET,你可以根据需要更改
+				data: {},
+				dataType: "json",
+			});
+			jqxhr.done(function(res) {
+				askLoader(false);
+				//res里面包含分类数据
+				//res里面的属性是随便写的，具体有什么是你们定
+				//但是slideData里面的content属性是必传的
+				res = [{
+					name: "首页",
+					id: 1
+				}, {
+					name: "服饰",
+					id: 2
+				}, {
+					name: "鞋子",
+					id: 3
+				}]
+				for (var i = 0, l = res.length; i < l; i++) {
+					var cur = {
+						content: res[i].name,
+						id: res[i].id,
+						other: "没有任何意义",
+						want: "这个也是一样,不过最后我会把你定义的这些字段返回给你"
+					};
+					this.slideData.push(cur);
+				}
+
+				this.getCategory(this.slideData[this.defaultActive].id);
+			}.bind(this));
+			jqxhr.fail(function() {
+				askLoader(false);
+			});
+		},
+		getCategory(id) {
+			askLoader(true);
+			var jqxhr = $.ajax({
+				url: './test.json',
+				method: "GET", // 默认为GET,你可以根据需要更改
+				data: {},
+				dataType: "json",
+			});
+			jqxhr.done(function(res) {
+				askLoader(false);
+				this.categorys = [];
+				//res里面包含分类数据
+				//res里面的属性是随便写的，具体有什么是你们定
+				//但是slideData里面的content属性是必传的
+				res = [{
+						name: "女装1",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女裤2",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女装3",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女裤4",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女装5",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女裤6",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女装7",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女裤8",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女装9",
+						cover: "./images/category.png"
+					},
+					{
+						name: "女装9",
+						cover: "./images/category.png"
+					}
+				]
+				var l = 1 + parseInt(Math.random() * res.length, 10);
+				for (var i = 0; i < l; i++) {
+					var cur = {
+						name: res[i].name,
+						cover: res[i].cover
+					};
+					this.categorys.push(cur);
+				}
+			}.bind(this));
+			jqxhr.fail(function() {
+				askLoader(false);
+			});
+		},
+		getGoods(done){
+			var jqxhr = $.ajax({
+				url: './test.json',
+				method: "GET", // 默认为GET,你可以根据需要更改
+				data: {
+					offset: this.offset
+				},
+				dataType: "json",
+			});
+			jqxhr.done(function(res) {
+				//res里面包含分类数据
+				//res里面的属性是随便写的，具体有什么是你们定
+				res = {
+					name: "2017新款喇叭袖新款喇叭袖",
+					cover: './images/product.png',
+					price: 39.50,
+					market_price: 199,
+					tags: [{
+						name: "自营"
+					}, {
+						name: "1.5折"
+					}, {
+						name: "新品"
+					}]
+				};
+				var l = 10;
+				for (var i = 0; i < l; i++) {
+					var cur = res;
+					this.goodsList.push(cur);
+				}
+				this.infiniteMore = true;
+				this.offset++;
+
+				//TODO remove 测试用
+				if(this.offset >= 6){
+					this.infiniteMore = false;
+				}
+				done&&done();
+			}.bind(this));
+			jqxhr.fail(function() {
+				this.infiniteMore = false;
+				done&&done();
+			});
+		},
+		itemClick: function(item, index) {
+			this.getCategory(item.id);
+			this.goodsList = [];
+			this.infiniteMore = true;
+			this.offset = 0;
+			this.$refs.scrollRef.scrollTop(0);
+			this.getGoods();
+		},
+		onInfinite: function(done) {
+			if(!this.infiniteMore) return;
+			this.getGoods(done);
+		},
+		onScroll: function(scroll){
+			var limit = $('body').outerHeight() + 30;
+			this.backTopBtn = scroll.scrollTop < -limit ? true:false;
+		},
+		backToTop:function(){
+			this.$refs.scrollRef.scrollTop(0,300);
+		}
+	}
+});
+
+</script>
+
+</html>
